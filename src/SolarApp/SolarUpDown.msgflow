@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ComIbmMQInput.msgnode="ComIbmMQInput.msgnode" xmlns:ComIbmMQOutput.msgnode="ComIbmMQOutput.msgnode" xmlns:ComIbmPhpCompute.msgnode="ComIbmPhpCompute.msgnode" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:eflow="http://www.ibm.com/wbi/2005/eflow" xmlns:patternAnnotation="http://www.ibm.com/patternAnnotation/2010" xmlns:utility="http://www.ibm.com/wbi/2005/eflow_utility" nsURI="SolarUpDown.msgflow"
+    nsPrefix="SolarUpDown.msgflow">
+  <eClassifiers xmi:type="eflow:FCMComposite" name="FCMComposite_1">
+    <eSuperTypes href="http://www.ibm.com/wbi/2005/eflow#//FCMBlock"/>
+    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.Latitude" name="Latitude" defaultValueLiteral="51.0167">
+      <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.Longitude" name="Longitude" defaultValueLiteral="-1.4">
+      <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
+    </eStructuralFeatures>
+    <translation xmi:type="utility:TranslatableString" key="SolarUpDown" bundleName="SolarUpDown" pluginId="SolarApp"/>
+    <colorGraphic16 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/SolarApp/icons/full/obj16/SolarUpDown.gif"/>
+    <colorGraphic32 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/SolarApp/icons/full/obj30/SolarUpDown.gif"/>
+    <longDescription xmi:type="utility:ConstantString" string="Sample program for use with IBM Integration Bus&#xD;&#xA;© Copyright International Business Machines Corporation 2010&#xD;&#xA;Licensed Materials - Property of IBM"/>
+    <composition>
+      <nodes xmi:type="ComIbmMQInput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_1" location="57,91" queueName="SOLAR" messageDomainProperty="XMLNSC" parserXmlnscMixedContentRetainMode="all" parserXmlnscCommentsRetainMode="all" parserXmlnscProcessingInstructionsRetainMode="all">
+        <translation xmi:type="utility:ConstantString" string="UTCDateIn"/>
+        <shortDescription xmi:type="utility:ConstantString" string="UTC Date in"/>
+      </nodes>
+      <nodes xmi:type="ComIbmMQOutput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_2" location="341,199" queueName="SUNSETSUNRISETIMES" validateMaster="none">
+        <translation xmi:type="utility:ConstantString" string="SunsetSunriseTimes"/>
+        <shortDescription xmi:type="utility:ConstantString" string="Output XML containing Latitude and Longditude, Sunrise and Sunset in UTC and local time"/>
+      </nodes>
+      <nodes xmi:type="ComIbmMQOutput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_4" location="319,63" queueName="SOLARERRORS">
+        <translation xmi:type="utility:ConstantString" string="LogErrors"/>
+      </nodes>
+      <nodes xmi:type="ComIbmPhpCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_7" location="143,156" scriptName="solarUpDown.php">
+        <translation xmi:type="utility:ConstantString" string="SolarUpSolDownTimesUTC"/>
+        <shortDescription xmi:type="utility:ConstantString" string="Take the date input from MQ and determine Sunrise and Sunset for the location specified at Pattern Creation (Lat Long)"/>
+      </nodes>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_9" targetNode="FCMComposite_1_4" sourceNode="FCMComposite_1_1" sourceTerminalName="OutTerminal.failure" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_11" targetNode="FCMComposite_1_4" sourceNode="FCMComposite_1_7" sourceTerminalName="OutTerminal.failure" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_17" targetNode="FCMComposite_1_7" sourceNode="FCMComposite_1_1" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_2" targetNode="FCMComposite_1_2" sourceNode="FCMComposite_1_7" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+    </composition>
+    <propertyOrganizer>
+      <propertyDescriptor groupName="Group.Basic" configurable="true" userDefined="true" describedAttribute="Property.Latitude">
+        <propertyName xmi:type="utility:TranslatableString" key="Property.Latitude" bundleName="SolarUpDown" pluginId="SolarApp"/>
+        <propertyDescriptor groupName="Group.Basic" configurable="true" userDefined="true" describedAttribute="Property.Longitude">
+          <propertyName xmi:type="utility:TranslatableString" key="Property.Longitude" bundleName="SolarUpDown" pluginId="SolarApp"/>
+        </propertyDescriptor>
+      </propertyDescriptor>
+    </propertyOrganizer>
+    <stickyBoard/>
+    <patternAnnotations>
+      <AnnotationTarget location="179,217,-1,-1" targetObjects="FCMComposite_1_1">
+        <PatternAnnotation xmi:type="patternAnnotation:PropertyPatternAnnotation" aliasId="FCMComposite_1_1.queueName" targetObject="FCMComposite_1_1" targetPropertyId="queueName"/>
+      </AnnotationTarget>
+      <AnnotationTarget location="385,136,-1,-1" targetObjects="FCMComposite_1_4">
+        <PatternAnnotation xmi:type="patternAnnotation:PropertyPatternAnnotation" aliasId="FCMComposite_1_4.queueName" targetObject="FCMComposite_1_4" targetPropertyId="queueName"/>
+      </AnnotationTarget>
+      <AnnotationTarget location="514,277,-1,-1" targetObjects="FCMComposite_1_2">
+        <PatternAnnotation xmi:type="patternAnnotation:PropertyPatternAnnotation" aliasId="FCMComposite_1_2.queueName" targetObject="FCMComposite_1_2" targetPropertyId="queueName"/>
+      </AnnotationTarget>
+      <AnnotationTarget location="5,5,-1,-1" targetObjects="//FCMComposite_1">
+        <PatternAnnotation xmi:type="patternAnnotation:PropertyPatternAnnotation" aliasId="UserDefinedProperty.Latitude" targetObject="//FCMComposite_1" targetPropertyId="Latitude"/>
+        <PatternAnnotation xmi:type="patternAnnotation:PropertyPatternAnnotation" aliasId="UserDefinedProperty.Longitude" targetObject="//FCMComposite_1" targetPropertyId="Longitude"/>
+      </AnnotationTarget>
+    </patternAnnotations>
+  </eClassifiers>
+</ecore:EPackage>
